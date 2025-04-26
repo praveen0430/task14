@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JavaScript</title>
+  <style>
+    body {
+      background-color: #f4f0ff;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      background: #ffffff;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      color: #5e17eb;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    h3 {
+      line-height: 1.8;
+    }
+
+    .output {
+      background-color: #eeeafd;
+      padding: 15px;
+      border-radius: 10px;
+      margin-top: 20px;
+      font-size: 1.1em;
+    }
+
+    .output p {
+      margin: 8px 0;
+    }
+
+    .label {
+      color: #6a0dad;
+      font-weight: bold;
+    }
+
+    hr {
+      border: 0;
+      height: 1px;
+      background: #ccc;
+      margin: 30px 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>JavaScript Practice</h1>
+    <h3>Topics: Conditional, Loops, Functions</h3>
+    <ul>
+      <li>1. Filter out negative numbers.</li>
+      <li>2. Get difference with 13 (and double if greater).</li>
+      <li>3. Generate Fibonacci series.</li>
+      <li>4. Sum of multiples of 3 and 5 below 1000.</li>
+      <li>5. Return cube of a number using function object.</li>
+    </ul>
+
+    <hr>
+
+    <div class="output" id="outputArea"></div>
+  </div>
+
+  <script>
+    const output = document.getElementById("outputArea");
+
+    // Question 1
+    function NegativeNumbers(arr) {
+      return arr.filter(num => num >= 0);
+    }
+    const numbers = [5, -3, 0, 9, -1, 7];
+    const positiveNumbers = NegativeNumbers(numbers);
+    output.innerHTML += `<p><span class="label">1.)</span> Positive numbers: ${positiveNumbers}</p>`;
+
+    // Question 2
+    function difference(num) {
+      if (num > 13) {
+        return 2 * Math.abs(num - 13);
+      } else {
+        return 13 - num;
+      }
+    }
+    output.innerHTML += `<p><span class="label">2.)</span> Difference (10): ${difference(10)}</p>`;
+    output.innerHTML += `<p><span class="label">2.)</span> Difference (20): ${difference(20)}</p>`;
+
+    // Question 3
+    function fibonacciSeries(n) {
+      const series = [];
+      let a = 0, b = 1;
+      for (let i = 0; i < n; i++) {
+        series.push(a);
+        [a, b] = [b, a + b];
+      }
+      return series;
+    }
+    output.innerHTML += `<p><span class="label">3.)</span> Fibonacci (10 terms): ${fibonacciSeries(10).join(", ")}</p>`;
+
+    // Question 4
+    function sumMultiplesOf3And5(limit) {
+      let sum = 0;
+      for (let i = 0; i < limit; i++) {
+        if (i % 3 === 0 || i % 5 === 0) {
+          sum += i;
+        }
+      }
+      return sum;
+    }
+    output.innerHTML += `<p><span class="label">4.)</span> Sum of multiples of 3 and 5 below 1000: ${sumMultiplesOf3And5(1000)}</p>`;
+
+    // Question 5
+    const cube = new Function("num", "return num * num * num;");
+    output.innerHTML += `<p><span class="label">5.)</span> Cube of 2: ${cube(2)}</p>`;
+    output.innerHTML += `<p><span class="label">5.)</span> Cube of 3: ${cube(3)}</p>`;
+    output.innerHTML += `<p><span class="label">5.)</span> Cube of 5: ${cube(5)}</p>`;
+  </script>
+</body>
+</html>
